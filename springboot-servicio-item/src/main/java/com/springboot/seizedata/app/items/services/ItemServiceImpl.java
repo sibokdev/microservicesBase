@@ -13,11 +13,11 @@ import org.springframework.web.client.RestTemplate;
 import com.springboot.seizedata.app.items.models.Item;
 import com.springboot.seizedata.app.items.models.Producto;
 
-@Service
+@Service("serviceRestTemplate")
 public class ItemServiceImpl implements IItemService{
 
 	//utilizando el restTemplate tradicional.
-	//
+	//la segunda version del codigo estara marcada por un 2
 	
 	@Autowired
 	RestTemplate restTemplate;
@@ -25,8 +25,9 @@ public class ItemServiceImpl implements IItemService{
 	@Override
 	public List<Item> findAll() {
 		// TODO Auto-generated method stub
-		List<Producto> productos=Arrays.asList(restTemplate.getForObject("http://localhost:8001/listar",Producto[].class ));
-		
+		//List<Producto> productos=Arrays.asList(restTemplate.getForObject("http://localhost:8001/listar",Producto[].class ));
+		//se puede poner el nombre del microservicio a consumir, con el cual se registro en el properties
+		List<Producto> productos=Arrays.asList(restTemplate.getForObject("http://servicio-productos/listar",Producto[].class ));
 		return productos.stream().map(p->new Item(p,1)).collect(Collectors.toList());
 	}
 
@@ -35,8 +36,9 @@ public class ItemServiceImpl implements IItemService{
 		Map<String,String> pathVariables=new HashMap<String,String>();
 		pathVariables.put("id",id.toString());
 	
-		Producto producto=restTemplate.getForObject("http://localhost:8001/ver/{id}", Producto.class,pathVariables);
-		
+		//Producto producto=restTemplate.getForObject("http://localhost:8001/ver/{id}", Producto.class,pathVariables);
+		//se puede poner el nombre del microservicio a consumir, con el cual se registro en el properties
+		Producto producto=restTemplate.getForObject("http://servicio-productos/ver/{id}", Producto.class,pathVariables);
 		return new Item(producto,cantidad);
 	}
 

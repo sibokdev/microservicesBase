@@ -13,7 +13,6 @@ import com.springboot.seizedata.app.items.models.Item;
 
 //esta clase utiliza el Feign para realizar los request post o get, es desarrollado por Netflix.
 @Service("serviceFeign")
-@Primary
 public class ItemServiceFeign implements IItemService{
 
 	@Autowired
