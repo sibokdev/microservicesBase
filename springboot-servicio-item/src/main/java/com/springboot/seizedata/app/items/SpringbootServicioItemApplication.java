@@ -7,6 +7,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 //import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+
 //habilitamos el manejo de errores
 @EnableCircuitBreaker
 //con la siguiente anotacion indicamos que sera un cliente del eureka server y que se va a auto registrar
